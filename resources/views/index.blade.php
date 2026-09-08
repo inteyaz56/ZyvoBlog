@@ -498,8 +498,8 @@
             </a>
 
             <form action="/users/logout"  method="post">
-
-                <button>Logout</button>
+               @csrf
+                <button style="cursor: pointer;">Logout</button>
 
 
             </form>
