@@ -138,6 +138,11 @@
         transform: translateY(0);
     }
 
+    .errors {
+        color: red;
+        margin-bottom: 15px;
+    }
+
     .login-text {
         text-align: center;
 
@@ -195,9 +200,22 @@
                 <p>Login and start sharing your stories.</p>
             </div>
 
+
+            @if ($errors->any())
+
+            <div class="error">
+                @foreach ($errors->all() as $err)
+                <p>{{ $err }}</p>
+                @endforeach
+            </div>
+
+            @endif
+
+
+
             <form action="/users/login" method="POST">
 
-
+                @csrf
                 <div class="form-group">
                     <label for="email">Email Address</label>
 
@@ -207,7 +225,7 @@
                 <div class="form-group">
                     <label for="password">Password</label>
 
-                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>
                 </div>
 
                 <button type="submit">
@@ -218,7 +236,7 @@
 
             <div class="login-text">
                 Don't have an account?
-                <a href="/users/register">Login</a>
+                <a href="/users/register"> Create</a>
             </div>
 
             <div class="footer">

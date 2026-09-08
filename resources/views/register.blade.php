@@ -138,6 +138,12 @@
         transform: translateY(0);
     }
 
+    .errors {
+        color: red;
+        margin-bottom: 15px;
+    }
+
+
     .login-text {
         text-align: center;
 
@@ -196,8 +202,18 @@
                 <p>Create your account and start sharing your stories.</p>
             </div>
 
-            <form action="/users/register" method="POST">
+            @if ($errors->any())
 
+            <div class="errors">
+                @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+                @endforeach
+            </div>
+
+            @endif
+
+            <form action="/users/register" method="POST">
+                @csrf
                 <div class="form-group">
                     <label for="name">Full Name</label>
 

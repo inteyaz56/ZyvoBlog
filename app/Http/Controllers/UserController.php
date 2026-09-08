@@ -38,7 +38,7 @@ class UserController extends Controller
             "name"    => $data["name"],
         ]);
 
-        redirect("/");
+        return redirect("/");
     }
 
     public function login(Request $request)
@@ -48,16 +48,16 @@ class UserController extends Controller
             "password" => "required",
         ]);
 
-        $user = User::where("email", $data["email"]);
+        $user = User::where("email", $data["email"])->first();
 
-        if (! $user) {
+        if (! $user || ! password_verify($data["password"], $user->password)) {
             return back()->with("error", "Invalid Credentials");
         }
 
         $isMatch = password_verify($data["password"], $user->password);
 
-        if ($isMatch) {
-            return back()->with("success", "Invalid Credentials ");
+        if (! $isMatch) {
+            return back()->with("error", "Invalid Credentials ");
         }
 
         session([
@@ -65,6 +65,6 @@ class UserController extends Controller
             "name"    => $user->name,
         ]);
 
-        redirect("/");
+        return redirect("/");
     }
 }
