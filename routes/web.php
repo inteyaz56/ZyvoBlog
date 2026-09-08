@@ -13,3 +13,5 @@ Route::get("/add/blog", function () {
 
 Route::get("/users/register", [UserController::class, "showRegister"]);
 Route::get("/users/login", [UserController::class, "showLogin"]);
+Route::post("/users/login", [UserController::class, "login"]);
+Route::post("/users/register", [UserController::class, "register"]);
