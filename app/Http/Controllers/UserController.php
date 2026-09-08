@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class UserController extends Controller
 {
@@ -53,6 +54,14 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect("/");
         }
+
+        return redirect("/users/login");
+    }
+
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
 
         return redirect("/users/login");
     }
