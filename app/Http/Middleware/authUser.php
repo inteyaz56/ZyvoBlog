@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -15,6 +14,9 @@ class authUser
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (session()->has("user_id")) {
+            return redirect("/");
+        }
         return $next($request);
     }
 }
