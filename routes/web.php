@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     if (Auth::check()) {
-        return view("index");
+        return app(BlogController::class)->getAllBlogs();
     }
 
-    return redirect("/login");
+    return redirect("/users/login");
 
 });
 

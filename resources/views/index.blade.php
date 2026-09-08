@@ -475,7 +475,7 @@
     <aside class="sidebar">
 
         <div class="logo">
-            <h1>Blogify</h1>
+            <h1>ZyvoBlog</h1>
             <p>Write. Read. Grow.</p>
         </div>
 
@@ -547,7 +547,6 @@
                     IA
                 </div>
 
-                <strong>Inteyaz Ansari</strong>
 
             </div>
 
@@ -568,7 +567,7 @@
 
             </div>
 
-            <a href="/create-post" class="create-btn">
+            <a href="/blogs/add" class="create-btn">
                 ✎ Write a Blog
             </a>
 
@@ -577,244 +576,61 @@
 
         <!-- BLOGS -->
 
-        <section class="blog-list">
+      <section class="blog-list">
+
+    @foreach ($blogs as $blog)
+
+        <article class="blog-card">
+
+                 <!--
+
+                <img class="blog-image"
+                src="{{ $blog->image }}"
+                alt="{{ $blog->title }}">
 
 
-            <!-- BLOG 1 -->
+                -->
 
-            <article class="blog-card">
+            <div class="blog-content">
 
-                <img class="blog-image" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600"
-                    alt="Mountains">
+                <div class="author">
 
-                <div class="blog-content">
-
-                    <div class="author">
-
-                        <div class="author-avatar">
-                            AS
-                        </div>
-
-                        <div>
-                            <h4>Ananya Sharma</h4>
-                            <span>5 Sep 2025</span>
-                        </div>
-
+                    <div class="author-avatar">
+                        {{ strtoupper(substr($blog->username, 0, 2)) }}
                     </div>
 
-                    <h3 class="blog-title">
-                        Life Lessons from the Mountains
-                    </h3>
-
-                    <p class="blog-description">
-                        Mountains have a unique way of teaching us patience,
-                        perspective, and peace. Here are some valuable life
-                        lessons I learned during my recent trip.
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Travel</span>
-                        <span class="tag">Life</span>
-                        <span class="tag">Growth</span>
+                    <div>
+                        <h4>{{ $blog->username }}</h4>
+                        <span>{{ $blog->created_at->format('d M Y') }}</span>
                     </div>
-
-                    <a href="#" class="read-more">
-                        Read More →
-                    </a>
 
                 </div>
 
-            </article>
+                <h3 class="blog-title">
+                    {{ $blog->title }}
+                </h3>
 
+                <p class="blog-description">
+                    {{ $blog->content }}
+                </p>
 
-            <!-- BLOG 2 -->
-
-            <article class="blog-card">
-
-                <img class="blog-image" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600"
-                    alt="Work desk">
-
-                <div class="blog-content">
-
-                    <div class="author">
-
-                        <div class="author-avatar">
-                            RM
-                        </div>
-
-                        <div>
-                            <h4>Rahul Mehta</h4>
-                            <span>3 Sep 2025</span>
-                        </div>
-
-                    </div>
-
-                    <h3 class="blog-title">
-                        How to Stay Productive While Working Remotely
-                    </h3>
-
-                    <p class="blog-description">
-                        Working from home can be challenging, but with the
-                        right habits and mindset, you can become more productive
-                        and maintain a healthy work-life balance.
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Productivity</span>
-                        <span class="tag">Remote Work</span>
-                        <span class="tag">Lifestyle</span>
-                    </div>
-
-                    <a href="#" class="read-more">
-                        Read More →
-                    </a>
-
+                <div class="tags">
+                    <span class="tag">{{ $blog->tag1 }}</span>
+                    <span class="tag">{{ $blog->tag2 }}</span>
+                    <span class="tag">{{ $blog->tag3 }}</span>
                 </div>
 
-            </article>
+                <a href="#" class="read-more">
+                    Read More →
+                </a>
 
+            </div>
 
-            <!-- BLOG 3 -->
+        </article>
 
-            <article class="blog-card">
+    @endforeach
 
-                <img class="blog-image" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=600"
-                    alt="Programming">
-
-                <div class="blog-content">
-
-                    <div class="author">
-
-                        <div class="author-avatar">
-                            VR
-                        </div>
-
-                        <div>
-                            <h4>Vikram Rao</h4>
-                            <span>1 Sep 2025</span>
-                        </div>
-
-                    </div>
-
-                    <h3 class="blog-title">
-                        A Beginner's Guide to Node.js
-                    </h3>
-
-                    <p class="blog-description">
-                        Node.js is a powerful runtime for building modern
-                        backend applications. Learn the fundamentals and
-                        understand why developers love using it.
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Technology</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">Programming</span>
-                    </div>
-
-                    <a href="#" class="read-more">
-                        Read More →
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- BLOG 4 -->
-
-            <article class="blog-card">
-
-                <img class="blog-image" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600"
-                    alt="Coffee">
-
-                <div class="blog-content">
-
-                    <div class="author">
-
-                        <div class="author-avatar">
-                            PV
-                        </div>
-
-                        <div>
-                            <h4>Priya Verma</h4>
-                            <span>28 Aug 2025</span>
-                        </div>
-
-                    </div>
-
-                    <h3 class="blog-title">
-                        The Power of Morning Routines
-                    </h3>
-
-                    <p class="blog-description">
-                        A simple morning routine can set the tone for a more
-                        focused and productive day. Here are some habits that
-                        helped me improve my daily life.
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Lifestyle</span>
-                        <span class="tag">Habits</span>
-                        <span class="tag">Self Improvement</span>
-                    </div>
-
-                    <a href="#" class="read-more">
-                        Read More →
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- BLOG 5 -->
-
-            <article class="blog-card">
-
-                <img class="blog-image" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600"
-                    alt="Beach">
-
-                <div class="blog-content">
-
-                    <div class="author">
-
-                        <div class="author-avatar">
-                            SK
-                        </div>
-
-                        <div>
-                            <h4>Sameer Khan</h4>
-                            <span>25 Aug 2025</span>
-                        </div>
-
-                    </div>
-
-                    <h3 class="blog-title">
-                        Why You Should Travel More
-                    </h3>
-
-                    <p class="blog-description">
-                        Traveling isn't just about visiting new places.
-                        It is about discovering new perspectives, meeting
-                        amazing people, and creating unforgettable memories.
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Travel</span>
-                        <span class="tag">Adventure</span>
-                        <span class="tag">Life</span>
-                    </div>
-
-                    <a href="#" class="read-more">
-                        Read More →
-                    </a>
-
-                </div>
-
-            </article>
-
-        </section>
+</section>
 
     </main>
 
