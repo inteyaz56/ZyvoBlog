@@ -17,6 +17,16 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
+    button{
+        background-color: red;
+        color: white;
+        border-radius: 8px;
+        width: 150px;
+        height: 40px;
+        border: none;
+        cursor: pointer;
+    }
+
     body {
         background: #f8f9ff;
         color: #111827;
