@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -20,23 +21,21 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $data = $request->validate([
-            "name"     => "required||min:3",
             "email"    => "required|email|unique:users,email",
+            "name"     => "required|min:3",
             "password" => "required|min:8",
         ]);
 
         $hashedPassword = password_hash($data["password"], PASSWORD_DEFAULT);
 
         $user = User::create([
-            "name"     => $data["name"],
             "email"    => $data["email"],
+            "name"     => $data["name"],
             "password" => $hashedPassword,
+
         ]);
 
-        session([
-            "user_id" => $user->id,
-            "name"    => $data["name"],
-        ]);
+        Auth::login($user);
 
         return redirect("/");
     }
@@ -46,25 +45,15 @@ class UserController extends Controller
         $data = $request->validate([
             "email"    => "required|email",
             "password" => "required",
+
         ]);
 
-        $user = User::where("email", $data["email"])->first();
+        $credentials = $request->only("email", "password");
 
-        if (! $user || ! password_verify($data["password"], $user->password)) {
-            return back()->with("error", "Invalid Credentials");
+        if (Auth::attempt($credentials)) {
+            return redirect("/");
         }
 
-        $isMatch = password_verify($data["password"], $user->password);
-
-        if (! $isMatch) {
-            return back()->with("error", "Invalid Credentials ");
-        }
-
-        session([
-            "user_id" => $user->id,
-            "name"    => $user->name,
-        ]);
-
-        return redirect("/");
+        return redirect("/users/login");
     }
 }

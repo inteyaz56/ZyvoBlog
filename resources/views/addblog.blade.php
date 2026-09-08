@@ -93,7 +93,7 @@
         </div>
         @endif
 
-        <form action="/add/post" method="POST" enctype="multipart/form-data">
+        <form action="/blogs/add" method="POST" enctype="multipart/form-data">
 
             @csrf
 

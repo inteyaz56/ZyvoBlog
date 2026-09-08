@@ -485,7 +485,7 @@
                 🏠 Home
             </a>
 
-            <a href="/add/post">
+            <a href="/blogs/add">
                 ＋ Create Post
             </a>
 
@@ -502,6 +502,8 @@
             </a>
 
         </nav>
+
+
 
         <div class="profile">
 
