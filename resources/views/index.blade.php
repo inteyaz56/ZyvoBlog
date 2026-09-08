@@ -497,10 +497,12 @@
                 👤 Profile
             </a>
 
-            <a href="/settings">
-                ⚙️ Settings
-            </a>
+            <form action="/users/logout"  method="post">
 
+                <button>Logout</button>
+
+
+            </form>
         </nav>
 
 

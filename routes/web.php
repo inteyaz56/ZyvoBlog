@@ -50,6 +50,8 @@ Route::middleware([GuestMiddleware::class])->group(function () {
 });
 
 Route::middleware([AuthUser::class])->group(function () {
+
+    Route::post("/users/logout", [UserController::class, "logout"]);
     Route::prefix("blogs")->group(function () {
 
         Route::get("/", [
