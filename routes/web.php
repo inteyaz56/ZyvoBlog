@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\GuestMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -48,21 +49,24 @@ Route::middleware([GuestMiddleware::class])->group(function () {
 
 });
 
-Route::prefix("blogs")->group(function () {
+Route::middleware([AuthUser::class])->group(function () {
+    Route::prefix("blogs")->group(function () {
 
-    Route::get("/", [
-        BlogController::class,
-        "getAllBlogs",
-    ]);
+        Route::get("/", [
+            BlogController::class,
+            "getAllBlogs",
+        ]);
 
-    Route::get("/add", [
-        BlogController::class,
-        "showBlog",
-    ]);
+        Route::get("/add", [
+            BlogController::class,
+            "showBlog",
+        ]);
 
-    Route::post("/add", [
-        BlogController::class,
-        "addBlog",
-    ]);
+        Route::post("/add", [
+            BlogController::class,
+            "addBlog",
+        ]);
+
+    });
 
 });
