@@ -5,7 +5,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class authUser
+class AuthUser
 {
     /**
      * Handle an incoming request.
@@ -14,8 +14,8 @@ class authUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (session()->has("user_id")) {
-            return redirect("/");
+        if (! session()->has("user_id")) {
+            return redirect("/users/login");
         }
         return $next($request);
     }
